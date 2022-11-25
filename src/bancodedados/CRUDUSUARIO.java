@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 import com.mysql.cj.xdevapi.Result;
 
-public class CRUD {
+public class CRUDUSUARIO {
 	public void Inserir(String nome ,String email,String senha) {
 		Connection conexao = null;
 		PreparedStatement comando = null;
@@ -47,7 +47,7 @@ public class CRUD {
 			}
 		}
 	}
-	public static String Login(String email, String senha){
+	public String Login(String email, String senha){
 		Connection conexao = null;
 		Statement comando = null;
 		ResultSet result = null;
@@ -81,5 +81,43 @@ public class CRUD {
 			System.out.print("FECHEI PORRA");
 		}//AULA DO DIA 22 DE SETEMPRO 1:49:30
 		return "erro";
+	}
+	public String GetName(String email,String senha) {
+		Connection conexao = null;
+		Statement comando = null;
+		ResultSet result = null;
+		
+		String nome = "";
+		
+		try {
+			conexao = ClasseDeConexao.Conectar();
+			String sql = "SELECT nome FROM usuarios WHERE email = \""+email+"\" AND senha = \""+senha+"\"";
+			comando = conexao.createStatement();
+			result = comando.executeQuery(sql);
+			try {
+				while(result.next()) {
+					nome = result.getString("nome");
+					System.out.println(nome);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return nome;
+	
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}
+		finally {
+			ClasseDeConexao.FexarConexao(conexao);
+			try {
+				comando.close();
+			}
+			catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}//AULA DO DIA 22 DE SETEMPRO 1:49:30
+		
+		return nome;
 	}
 }

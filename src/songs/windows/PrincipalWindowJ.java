@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import songs.classes.PrincipalController;
+
 import javax.swing.border.BevelBorder;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -13,11 +16,29 @@ import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.security.Principal;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.awt.event.ActionEvent;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.MatteBorder;
+
+import com.mysql.cj.xdevapi.DbDoc;
+
+import bancodedados.CRUDONGS;
+import bancodedados.ClasseDeConexao;
+import net.proteanit.sql.DbUtils;
+
+import java.awt.Color;
+import javax.swing.JScrollPane;
 
 public class PrincipalWindowJ extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
+	private JTable tabela;
 
 	/**
 	 * Launch the application.
@@ -26,7 +47,7 @@ public class PrincipalWindowJ extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PrincipalWindowJ frame = new PrincipalWindowJ();
+					PrincipalWindowJ frame = new PrincipalWindowJ("CODE", "CODE");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +59,10 @@ public class PrincipalWindowJ extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public PrincipalWindowJ() {
+	public PrincipalWindowJ(String nome,String email) {
+		
+		
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 774, 485);
@@ -67,17 +91,17 @@ public class PrincipalWindowJ extends JFrame {
 		panel_1.add(panel_2);
 		panel_2.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_1 = new JLabel("user.name");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2.add(lblNewLabel_1);
+		JLabel name = new JLabel(nome);
+		name.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_2.add(name);
 		
 		JPanel panel_2_1 = new JPanel();
 		panel_1.add(panel_2_1);
 		panel_2_1.setLayout(new BorderLayout(0, 0));
 		
-		JLabel lblNewLabel_2 = new JLabel("user.name");
-		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		panel_2_1.add(lblNewLabel_2);
+		JLabel EMAIL = new JLabel(email);
+		EMAIL.setHorizontalAlignment(SwingConstants.CENTER);
+		panel_2_1.add(EMAIL);
 		
 		JPanel panel_2_2 = new JPanel();
 		panel_2_2.setLayout(null);
@@ -85,13 +109,54 @@ public class PrincipalWindowJ extends JFrame {
 		panel_1.add(panel_2_2);
 		
 		JButton btnNewButton = new JButton("Lougout");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				PrincipalController.TradeToLoginRegister();
+			}
+		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 23));
 		btnNewButton.setBounds(10, 11, 141, 37);
 		panel_2_2.add(btnNewButton);
 		
-		table = new JTable();
-		table.setBounds(60, 75, 456, 330);
-		contentPane.add(table);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(73, 75, 456, 330);
+		contentPane.add(scrollPane);
+		
+		tabela = new JTable();
+		scrollPane.setViewportView(tabela);
+		tabela.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		
+		JButton btnNewButton_1 = new JButton("CARREGAR INFOS");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Connection conexao = null;
+				Statement comando = null;
+				ResultSet result = null;
+				
+				try {
+					conexao = ClasseDeConexao.Conectar();
+					String sql = "SELECT `nome da instituiçao`, `intuito`,`descricao`,`site de pagamento` FROM `ongs`";
+					comando = conexao.createStatement();
+					result = comando.executeQuery(sql);
+					tabela.setModel(DbUtils.resultSetToTableModel(result));
+			
+				}catch(SQLException e2) {
+					e2.printStackTrace();
+					
+				}
+				finally {
+					ClasseDeConexao.FexarConexao(conexao);
+					try {
+						comando.close();
+					}
+					catch(SQLException e2) {
+						e2.printStackTrace();
+					}
+				}//AULA DO DIA 22 DE SETEMPRO 1:49:30
+			}
+		});
+		btnNewButton_1.setBounds(231, 404, 160, 31);
+		contentPane.add(btnNewButton_1);
 	}
-
 }

@@ -1,23 +1,22 @@
 package songs.windows;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import java.awt.Font;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import songs.classes.HomeController;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 public class Home {
 
-	public JFrame frame;
+	public JFrame frmSongs;
 
 	/**
 	 * Launch the application.
@@ -27,7 +26,7 @@ public class Home {
 			public void run() {
 				try {
 					Home window = new Home();
-					window.frame.setVisible(true);
+					window.frmSongs.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -46,38 +45,41 @@ public class Home {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 647, 437);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSongs = new JFrame();
+		frmSongs.setResizable(false);
+		frmSongs.setTitle("Songs");
+		frmSongs.setBounds(100, 100, 850, 461);
+		frmSongs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSongs.getContentPane().setLayout(null);
+		frmSongs.setLocationRelativeTo(null);
 		
 		JButton ongs = new JButton("Ongs");
 		ongs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				frame.dispose();
+				frmSongs.dispose();
 				HomeController.TradeToOngsInformation();
 				
 			}
 		});
 		ongs.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		ongs.setBounds(76, 207, 166, 72);
-		frame.getContentPane().add(ongs);
+		ongs.setBounds(82, 259, 236, 97);
+		frmSongs.getContentPane().add(ongs);
 		
 		JButton doador = new JButton("Doador");
 		doador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				frmSongs.dispose();
 				HomeController.TradeToLoginRegister();
 			}
 		});
 		doador.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		doador.setBounds(412, 207, 166, 72);
-		frame.getContentPane().add(doador);
+		doador.setBounds(525, 259, 236, 97);
+		frmSongs.getContentPane().add(doador);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(184, 61, 286, 90);
-		frame.getContentPane().add(panel);
+		panel.setBounds(182, 80, 457, 90);
+		frmSongs.getContentPane().add(panel);
 		panel.setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblNewLabel = new JLabel("Você é um(a)?");

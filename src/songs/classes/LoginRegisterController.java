@@ -10,7 +10,7 @@ public class LoginRegisterController {
 	public static void TradeToHome() {
 		Home home = new Home();
 		
-		home.frame.setVisible(true);
+		home.frmSongs.setVisible(true);
 	}
 	public static void TradeToPrincipal(String nome ,String email){
 		PrincipalWindowJ principalWindowJ = new PrincipalWindowJ(nome,email);

@@ -40,6 +40,8 @@ public class OngsInformation extends JFrame {
 	 * Create the frame.
 	 */
 	public OngsInformation() {
+		setResizable(false);
+		setTitle("Songs");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 657, 476);
 		contentPane = new JPanel();
@@ -55,7 +57,7 @@ public class OngsInformation extends JFrame {
 				OngsInformationController.TradeToHome();
 			}
 		});
-		btnNewButton.setBounds(10, 367, 222, 59);
+		btnNewButton.setBounds(10, 379, 186, 47);
 		contentPane.add(btnNewButton);
 		
 		JPanel panel = new JPanel();

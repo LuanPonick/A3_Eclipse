@@ -25,6 +25,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Component;
+import java.awt.Window.Type;
 
 public class LoginRegister extends JFrame {
 
@@ -53,10 +54,14 @@ public class LoginRegister extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginRegister() {
+		setResizable(false);
+		setTitle("Songs");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 764, 428);
 		contentPane = new JPanel();
+		contentPane.setLocale(null);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLocation(0, 0);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -108,8 +113,6 @@ public class LoginRegister extends JFrame {
 					dispose();
 					CRUDUSUARIO crudusuario = new CRUDUSUARIO();
 					String nome = crudusuario.GetName(EmailL.getText(),PasswordL.getText());
-					JOptionPane.showMessageDialog(Login, nome);
-					
 					LoginRegisterController.TradeToPrincipal(nome,EmailL.getText());
 				}else
 				{

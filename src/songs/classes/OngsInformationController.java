@@ -8,6 +8,6 @@ public class OngsInformationController {
 	public static void TradeToHome() {
 		
 		Home window = new Home();
-		window.frame.setVisible(true);
+		window.frmSongs.setVisible(true);
 	}
 }

@@ -60,6 +60,7 @@ public class PrincipalWindowJ extends JFrame {
 	 * Create the frame.
 	 */
 	public PrincipalWindowJ(String nome,String email) {
+		setTitle("Songs");
 		
 		
 		

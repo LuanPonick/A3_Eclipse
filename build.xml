@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="SistemOngs">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="../../Area de trabalho/Java/Eclipse/"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="17"/>
+    <property name="source" value="17"/>
+    <path id="SistemOngs.classpath">
+        <pathelement location="bin"/>
+        <pathelement location="bibliotecas/mysql-connector-java-8.0.30.jar"/>
+        <pathelement location="bibliotecas/rs2xml_20221006175427.jar"/>
+    </path>
+    <path id="run.Home.classpath">
+        <path refid="SistemOngs.classpath"/>
+        <pathelement location="bibliotecas/mysql-connector-java-8.0.30.jar"/>
+        <pathelement location="bibliotecas/rs2xml_20221006175427.jar"/>
+    </path>
+    <path id="run.HomeJ.classpath">
+        <path refid="SistemOngs.classpath"/>
+        <pathelement location="bibliotecas/mysql-connector-java-8.0.30.jar"/>
+        <pathelement location="bibliotecas/rs2xml_20221006175427.jar"/>
+    </path>
+    <path id="run.LoginRegister.classpath">
+        <path refid="SistemOngs.classpath"/>
+        <pathelement location="bibliotecas/mysql-connector-java-8.0.30.jar"/>
+        <pathelement location="bibliotecas/rs2xml_20221006175427.jar"/>
+    </path>
+    <path id="run.LoginRegisterJ.classpath">
+        <path refid="SistemOngs.classpath"/>
+        <pathelement location="bibliotecas/mysql-connector-java-8.0.30.jar"/>
+        <pathelement location="bibliotecas/rs2xml_20221006175427.jar"/>
+    </path>
+    <path id="run.Main.classpath">
+        <path refid="SistemOngs.classpath"/>
+        <pathelement location="bibliotecas/mysql-connector-java-8.0.30.jar"/>
+        <pathelement location="bibliotecas/rs2xml_20221006175427.jar"/>
+    </path>
+    <path id="run.OngsInformation.classpath">
+        <path refid="SistemOngs.classpath"/>
+        <pathelement location="bibliotecas/mysql-connector-java-8.0.30.jar"/>
+        <pathelement location="bibliotecas/rs2xml_20221006175427.jar"/>
+    </path>
+    <path id="run.PrincipalWindow.classpath">
+        <path refid="SistemOngs.classpath"/>
+        <pathelement location="bibliotecas/mysql-connector-java-8.0.30.jar"/>
+        <pathelement location="bibliotecas/rs2xml_20221006175427.jar"/>
+    </path>
+    <path id="run.PrincipalWindowJ.classpath">
+        <path refid="SistemOngs.classpath"/>
+        <pathelement location="bibliotecas/mysql-connector-java-8.0.30.jar"/>
+        <pathelement location="bibliotecas/rs2xml_20221006175427.jar"/>
+    </path>
+    <target name="init">
+        <mkdir dir="bin"/>
+        <copy includeemptydirs="false" todir="bin">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="bin"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <classpath refid="SistemOngs.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="Home">
+        <java classname="songs.windows.Home" failonerror="true" fork="yes">
+            <classpath refid="run.Home.classpath"/>
+        </java>
+    </target>
+    <target name="HomeJ">
+        <java classname="songs.windows.HomeJ" failonerror="true" fork="yes">
+            <classpath refid="run.HomeJ.classpath"/>
+        </java>
+    </target>
+    <target name="LoginRegister">
+        <java classname="songs.windows.LoginRegister" failonerror="true" fork="yes">
+            <classpath refid="run.LoginRegister.classpath"/>
+        </java>
+    </target>
+    <target name="LoginRegisterJ">
+        <java classname="songs.windows.LoginRegister" failonerror="true" fork="yes">
+            <classpath refid="run.LoginRegisterJ.classpath"/>
+        </java>
+    </target>
+    <target name="Main">
+        <java classname="songs.classes.Main" failonerror="true" fork="yes">
+            <classpath refid="run.Main.classpath"/>
+        </java>
+    </target>
+    <target name="OngsInformation">
+        <java classname="songs.windows.OngsInformation" failonerror="true" fork="yes">
+            <classpath refid="run.OngsInformation.classpath"/>
+        </java>
+    </target>
+    <target name="PrincipalWindow">
+        <java classname="songs.windows.PrincipalWindow" failonerror="true" fork="yes">
+            <classpath refid="run.PrincipalWindow.classpath"/>
+        </java>
+    </target>
+    <target name="PrincipalWindowJ">
+        <java classname="songs.windows.PrincipalWindowJ" failonerror="true" fork="yes">
+            <classpath refid="run.PrincipalWindowJ.classpath"/>
+        </java>
+    </target>
+</project>
